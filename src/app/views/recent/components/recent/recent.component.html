@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-7">
+        <div class="input-group mb-3">
+            <input (keyup)="search($event)" type="text" class="form-control" placeholder="Buscar">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tracks.length < 1" class="row my-3">
+    <div class="col-12 text-center cl-red">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Cargando canciones...</p>
+    </div>
+    
+</div>
+
+<!-- Listado de canciones -->
+<div [hidden]="tracks.length == 0" class="row mt-2">
+
+    <div class="col-12">
+        <h5 class="cl-red" style="font-weight: bold;">
+            Canciones
+        </h5>
+    </div>
+
+    <table id='table' datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="table table-hover table-responsive-sm w-100 col-12 " cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Canción </th>
+            <th>Artista </th>
+            <th>Álbum </th>
+            <th>Duración </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of tracks">
+            <td >
+                <img [src]="item.album.coverSmall" class="" [alt]="item.album.title"> {{item.title}} 
+            </td>
+            <td style="vertical-align: middle;">{{item.artist.name}} </td>
+            <td style="vertical-align: middle;">{{item.album.title}} </td>
+            <td style="vertical-align: middle;">{{item.duration | secondsToMinutes}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--Listado de Albums--->
+<div class="row mt-5">
+    <div class="col-12">
+        <h5 class="cl-red" style="font-weight: bold;">
+            Álbumes
+        </h5>
+    </div>
+
+    <div *ngFor="let item of albums" class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-3 my-2">
+        <div class="card m-auto" style="width: 15rem;border-color:white">
+            <div class="cover">
+                <div class="cover-image">
+                    <div class="button-play">
+                        <div class="container-icon">
+                            <fa-icon class="icon" [icon]="faPlay"></fa-icon>
+                        </div>
+                    </div>
+                    <img (error)="notFoundImage($event)" [src]="item.coverMedium" class="picture-img card-img-top" [alt]="item.title">
+                </div>
+                
+                
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.artist.name}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-music-player [trackCurrent]="trackCurrent"></app-music-player>

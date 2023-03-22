@@ -30,9 +30,24 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.css",
+              "node_modules/datatables.net-buttons-bs5/css/buttons.bootstrap5.css",
+              "node_modules/datatables.net-responsive-bs5/css/responsive.bootstrap5.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.js",
+              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+              "node_modules/datatables.net-buttons-bs5/js/buttons.bootstrap5.js",
+              "node_modules/datatables.net-colreorder/js/dataTables.colReorder.js",
+              "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+              "node_modules/datatables.net-responsive-bs5/js/responsive.bootstrap5.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -100,5 +115,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "3713930d-3d7e-4a3c-8562-8e6593dd6036"
   }
 }

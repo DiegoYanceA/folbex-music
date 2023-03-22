@@ -1,0 +1,51 @@
+<!-- Music player -->
+<footer>
+    <div class="row m-0 wrapper bg-footer cl-white">
+        
+        <div class="col-md-3 p-0 d-md-block d-none">
+            <div class="h-100">
+                <div class="d-inline">
+                    <img class="image-music-player" [src]="trackCurrent.album.coverSmall" [alt]="trackCurrent.album.title">
+                </div>
+                
+                <div class="d-inline-flex">
+                    <div class="d-block">
+                        <h6>
+                            {{trackCurrent.title}}
+                            <br>
+                            {{trackCurrent.artist.name}} {{trackCurrent.album.title}}
+                        </h6>
+                    </div>
+                    <div class="d-block">
+                        <p>
+                            {{trackCurrent.artist.name}} {{trackCurrent.album.title}}
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-9 p-0">
+           <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-1 text-center">
+                    <button class="btn btn-rounded-principal">
+                        <fa-icon [icon]="faStepBackward"></fa-icon>
+                    </button>
+                </div>
+                <div class="col-1 text-center">
+                    <button class="btn btn-rounded-principal">
+                        <fa-icon [icon]="faPlay"></fa-icon>
+                    </button>
+                </div>
+                <div class="col-1 text-center">
+                    <button class="btn btn-rounded-principal">
+                        <fa-icon [icon]="faStepForward"></fa-icon>
+                    </button>
+                </div>
+           </div>
+        </div>
+        <div class="col-md-3 p-0">
+            
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,44 @@
+@use "../../../../assets/styles/colors" as *
+@use "../../../../assets/styles/const" as *
+
+
+$paddingMenu: 1.5rem
+
+/* Nav */
+nav
+    position: fixed
+    left: 0px
+    top: 0px
+    height: calc(100vh - $footerHeight)
+    width: $navWidth
+
+    #logo 
+        
+        img
+            width: 100%
+            height: auto
+    
+    .title
+        font-size: 1.2rem
+        font-weight: bold
+        padding-left: $paddingMenu
+        border-left-width: 5px
+        border-left-style: solid
+        border-left-color: $darkRed
+
+    .menu
+        padding-left: 0px !important
+        li
+            margin-top: 5px
+            border-left-width: 5px
+            border-left-style: solid
+            border-left-color: $darkRed
+            &:hover
+                border-left-width: 5px
+                border-left-style: solid
+                border-left-color: $red
+                color: $red !important
+
+            .nav-item
+                padding-left: $paddingMenu
+                cursor: pointer
