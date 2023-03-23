@@ -1,15 +1,17 @@
-$size: 100px
-    
+$sizeAlbum: 100px
+$fontAlbum: 3.8rem
+$sizeTrack: 35px
+$fontTrack: 1rem
+
 .cover
+    width: fit-content
+    
     .cover-image
         position: relative
         .button-play
             top: 50%
             left: 50%
             position: absolute
-            width: $size
-            height: $size
-            margin: calc($size / -2) 0 0 calc($size / -2)
             text-align: center
             z-index: 1
 
@@ -18,14 +20,29 @@ $size: 100px
                 justify-content: center
                 align-items: center
                 height: 100%
-                .icon
-                        
+                .icon.album
                     color: white !important
-                    font-size: 3.8rem
+                    font-size: $fontAlbum
+                .icon.track
+                    color: black !important
+                    font-size: $fontTrack
+    
+        .button-play.album
+            width: $sizeAlbum
+            height: $sizeAlbum
+            margin: calc($sizeAlbum / -2) 0 0 calc($sizeAlbum / -2)
+
+        .button-play.track
+            width: $sizeTrack
+            height: $sizeTrack
+            margin: calc($sizeTrack / -2) 0 0 calc($sizeTrack / -2)
+            display: none
+            background: white
+            border-radius: 50%
             
     &:hover
         .picture-img
             opacity: 0.86
 
-    
-        
+        .button-play.track
+            display: block !important

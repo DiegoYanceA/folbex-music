@@ -13,4 +13,8 @@ export class AlbumService {
   public search(q:string) {
     return this.http.get<AlbumResponse[]>(`${environment.url_api}/search/${this.API}?q=${q}`);
   }
+
+  public get(id: number) {
+    return this.http.get<AlbumResponse[]>(`${environment.url_api}/${this.API}/${id}`);
+  }
 }

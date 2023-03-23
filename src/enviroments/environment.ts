@@ -6,7 +6,7 @@ export const environment = {
     url_auth: "https://connect.deezer.com/oauth/auth.php",
 
     redirect_uri: "http://localhost:4200/auth/oauth",
-    app_id: 590504,
+    app_id: 111111,
     perms: "basic_access",
-    secret: "0d242083236c3e0991fce935bc1cd3f4"
+    secret: "111111111"
 }

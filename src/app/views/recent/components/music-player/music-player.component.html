@@ -2,50 +2,70 @@
 <footer>
     <div class="row m-0 wrapper bg-footer cl-white">
         
-        <div class="col-md-3 p-0 d-md-block d-none">
-            <div class="h-100">
-                <div class="d-inline">
-                    <img class="image-music-player" [src]="trackCurrent.album.coverSmall" [alt]="trackCurrent.album.title">
+        <div class="col-md-4 p-0 d-md-block d-none">
+            <div *ngIf="tracksCurrentInput[current] != null" class="h-100" >
+                <div class="nav-item float-start">
+                    <img class="image-music-player" [src]="tracksCurrentInput[current].album.coverSmall" [alt]="tracksCurrentInput[current].album.title">
                 </div>
                 
-                <div class="d-inline-flex">
-                    <div class="d-block">
-                        <h6>
-                            {{trackCurrent.title}}
-                            <br>
-                            {{trackCurrent.artist.name}} {{trackCurrent.album.title}}
-                        </h6>
+                <div class="nav-item float-start">
+                    <div class="data">
+                       <p>
+                         {{current + 1}} - {{tracksCurrentInput[current].title | sliceTexto:20}}
+                        <br>
+                            {{tracksCurrentInput[current].artist.name | sliceTexto:15}} - {{tracksCurrentInput[current].album.title | sliceTexto:15}}
+                       </p>
                     </div>
-                    <div class="d-block">
-                        <p>
-                            {{trackCurrent.artist.name}} {{trackCurrent.album.title}}
-                        </p>
-                    </div>
-                    
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-9 p-0">
+
+        <div class="col-md-4 col-9 p-0">
            <div class="row d-flex align-items-center justify-content-center h-100">
-                <div class="col-1 text-center">
-                    <button class="btn btn-rounded-principal">
+                <div class="col-2 text-center">
+                    <button [disabled]="!isThereMusic() || current < 1" (click)="back()" class="btn btn-rounded-principal">
                         <fa-icon [icon]="faStepBackward"></fa-icon>
                     </button>
                 </div>
-                <div class="col-1 text-center">
-                    <button class="btn btn-rounded-principal">
+                <div  class="col-2 text-center">
+                    <button [disabled]="!isThereMusic()" *ngIf="audio.paused" (click)="play()" class="btn btn-rounded-principal">
                         <fa-icon [icon]="faPlay"></fa-icon>
                     </button>
+                    <button [disabled]="!isThereMusic()" *ngIf="!audio.paused" (click)="stop()" class="btn btn-rounded-principal">
+                        <fa-icon [icon]="faPause"></fa-icon>
+                    </button>
                 </div>
-                <div class="col-1 text-center">
-                    <button class="btn btn-rounded-principal">
+                <div class="col-2 text-center">
+                    <button [disabled]="!isThereMusic() || current == tracksCurrentInput.length - 1" (click)="next()" class="btn btn-rounded-principal">
                         <fa-icon [icon]="faStepForward"></fa-icon>
                     </button>
                 </div>
            </div>
         </div>
-        <div class="col-md-3 p-0">
-            
+        <div class="col-md-4 p-0">
+            <div class="h-100">
+                <div class="nav-item float-end">
+                    <div class="data">
+                        <div class="container-volumen">
+                            <button [disabled]="!isThereMusic()" (click)="toggleMute()" class="btn btn-rounded-principal">
+                                <fa-icon class="icon" [icon]="audio.muted?faVolumeMute:showVolumeIcon()"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item float-end text-center">
+                    <div class="data">
+                        <input [disabled]="!isThereMusic()"
+                         [(ngModel)]="volumen" 
+                        (input)="changeVolumen()" 
+                        type="range" class="form-range" 
+                        id="volumen" min="0" max="1" step="0.1" value="1">
+                    </div>
+                    
+                </div>
+                
+            </div>
         </div>
     </div>
 </footer>

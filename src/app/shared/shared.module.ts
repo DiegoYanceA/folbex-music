@@ -4,13 +4,15 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SecondsToMinutes } from './pipes/seconds-to-minutes';
+import { SliceTextoPipe } from './pipes/slice-texto.pipe';
 
 
 @NgModule({
   declarations: [
     NavComponent,
     FooterComponent,
-    SecondsToMinutes
+    SecondsToMinutes,
+    SliceTextoPipe
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { SecondsToMinutes } from './pipes/seconds-to-minutes';
   exports: [
     NavComponent,
     FooterComponent,
-    SecondsToMinutes
+    SecondsToMinutes,
+    SliceTextoPipe
   ]
 })
 export class SharedModule { }

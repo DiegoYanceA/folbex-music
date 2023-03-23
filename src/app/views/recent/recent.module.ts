@@ -6,7 +6,7 @@ import { RecentComponent } from './components/recent/recent.component';
 import { DataTablesModule } from 'angular-datatables';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     RecentComponent,
@@ -17,7 +17,8 @@ import { MusicPlayerComponent } from './components/music-player/music-player.com
     FontAwesomeModule,
     RecentRoutingModule,
     DataTablesModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class RecentModule { }

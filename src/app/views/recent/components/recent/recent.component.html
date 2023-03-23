@@ -1,47 +1,81 @@
 <div class="row">
     <div class="col-md-7">
         <div class="input-group mb-3">
-            <input (keyup)="search($event)" type="text" class="form-control" placeholder="Buscar">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+            <input 
+                [(ngModel)]="find" 
+                (keyup.enter)="search(find)" 
+                (keyup)="searchKey($event)" 
+                type="text" class="form-control" 
+                placeholder="Buscar"
+                [disabled]="(loadingAlbum || loadingAlbum)"
+                >
+            <button 
+                (click)="search(find)" 
+                class="btn btn-outline-secondary" 
+                type="button" 
+                id="search"
+                [disabled]="(loadingAlbum || loadingAlbum)"
+                >
                 <fa-icon [icon]="faSearch"></fa-icon>
             </button>
         </div>
     </div>
 </div>
 
-<div *ngIf="tracks.length < 1" class="row my-3">
+<div *ngIf="tracksCurrent[current] == null && !(loadingAlbum || loadingTrack)" class="row">
+    <div class="col-12 text-center cl-red">
+        <p>Encuentre su música o álbum favorito..</p>
+    </div>
+</div>
+
+<!-- Listado de canciones -->
+
+<div *ngIf="loadingTrack" class="row my-3">
     <div class="col-12 text-center cl-red">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
         <p>Cargando canciones...</p>
     </div>
-    
 </div>
 
-<!-- Listado de canciones -->
-<div [hidden]="tracks.length == 0" class="row mt-2">
+<div [hidden]="tracks.length == 0 || loadingTrack" class="row mt-2">
 
     <div class="col-12">
         <h5 class="cl-red" style="font-weight: bold;">
             Canciones
         </h5>
     </div>
-
     <table id='table' datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
         class="table table-hover table-responsive-sm w-100 col-12 " cellspacing="0" width="100%">
         <thead>
         <tr>
-            <th>Canción </th>
-            <th>Artista </th>
-            <th>Álbum </th>
-            <th>Duración </th>
+            <th>#</th>
+            <th>Canción <fa-icon [icon]="faMusic"></fa-icon></th>
+            <th>Artista <fa-icon [icon]="faUser"></fa-icon></th>
+            <th>Álbum <fa-icon [icon]="faCompactDisc"></fa-icon></th>
+            <th>Duración <fa-icon [icon]="faClock"></fa-icon></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of tracks">
-            <td >
-                <img [src]="item.album.coverSmall" class="" [alt]="item.album.title"> {{item.title}} 
+        <tr *ngFor="let item of tracks;let i = index" [attr.data-index]="i">
+            <td>{{i + 1}}</td>
+            <td>
+                <div (click)="playTrack(i)" class="cover d-inline-flex">
+                    <div class="cover-image">
+                        <div class="button-play track">
+                            <div class="container-icon">
+                                <fa-icon class="icon track" [icon]="faPlay"></fa-icon>
+                            </div>
+                        </div>
+                        <img (error)="notFoundImage($event, 56)" class="picture-img" [src]="item.album.coverSmall" [alt]="item.album.title">
+                    </div>
+                </div>
+                
+                <div class="d-inline-flex p-3">
+                    {{item.title | sliceTexto:15}}
+                </div>
+                
             </td>
             <td style="vertical-align: middle;">{{item.artist.name}} </td>
             <td style="vertical-align: middle;">{{item.album.title}} </td>
@@ -52,7 +86,17 @@
 </div>
 
 <!--Listado de Albums--->
-<div class="row mt-5">
+
+<div *ngIf="loadingAlbum" class="row my-3">
+    <div class="col-12 text-center cl-red">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Cargando álbumes...</p>
+    </div>
+</div>
+
+<div [hidden]="albums.length == 0" class="row mt-5">
     <div class="col-12">
         <h5 class="cl-red" style="font-weight: bold;">
             Álbumes
@@ -61,14 +105,14 @@
 
     <div *ngFor="let item of albums" class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-3 my-2">
         <div class="card m-auto" style="width: 15rem;border-color:white">
-            <div class="cover">
+            <div (click)="playAlbum(item)" class="cover">
                 <div class="cover-image">
-                    <div class="button-play">
+                    <div class="button-play album">
                         <div class="container-icon">
-                            <fa-icon class="icon" [icon]="faPlay"></fa-icon>
+                            <fa-icon class="icon album" [icon]="idAlbumLoading == item.id?faSpinner :faPlay" [pulse]="idAlbumLoading == item.id"></fa-icon>
                         </div>
                     </div>
-                    <img (error)="notFoundImage($event)" [src]="item.coverMedium" class="picture-img card-img-top" [alt]="item.title">
+                    <img (error)="notFoundImage($event, 250)" [src]="item.coverMedium" class="picture-img card-img-top" [alt]="item.title">
                 </div>
                 
                 
@@ -81,4 +125,4 @@
     </div>
 </div>
 
-<app-music-player [trackCurrent]="trackCurrent"></app-music-player>
+<app-music-player [current]="current" [tracksCurrentInput]="tracksCurrent"></app-music-player>

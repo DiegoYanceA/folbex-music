@@ -7,6 +7,7 @@ export class Track {
     titleShort: string = "";
     preview:string = "";
     duration: number = 0;
+    rank: number = 0;
     artist: Artist = new Artist();
     album: Album = new Album();
 }
