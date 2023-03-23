@@ -15,9 +15,10 @@ En caso de presentar errores con CORS, entra a la siguiente pagina y darle permi
 * Listado de músicas y albumes acorde a lo ingresado
 
 ## IMAGNES
-https://i.ibb.co/xX1ywnF/music.png
+<img src="https://i.ibb.co/xX1ywnF/music.png" alt="musc-logo" width="100%" height="auto"/>
 
-https://i.ibb.co/xX1ywnF/music.png
+<img src="https://i.ibb.co/tJNBySx/album.png" alt="musc-logo" width="100%" height="auto"/>
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
