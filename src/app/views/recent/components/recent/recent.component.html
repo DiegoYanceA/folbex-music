@@ -28,6 +28,38 @@
     </div>
 </div>
 
+<!-- Artista destacado --> 
+<div *ngIf="tracksCurrent[current] != null" class="mb-3">
+    <div class="row">
+        <div class="col-auto p-0">
+            <div (click)="playTrack(current)" class="cover">
+                <div class="cover-image">
+                    <div class="button-play album">
+                        <div class="container-icon">
+                            <fa-icon class="icon album" [icon]="idAlbumLoading == tracksCurrent[current].id?faSpinner :faPlay" [pulse]="idAlbumLoading == tracksCurrent[current].id"></fa-icon>
+                        </div>
+                    </div>
+                    <img style="vertical-align: text-top;" (error)="notFoundImage($event, 250)" [src]="tracksCurrent[current].album.coverMedium" class="picture-img card-img-top" [alt]="tracksCurrent[current].title">
+                </div> 
+            </div>
+        </div>
+        <div class="col w-100 bg-red-light-opacity cl-white">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-12 px-2 py-3">
+                    <h5>{{tracksCurrent[current].album.title}} (Rank: {{tracksCurrent[current].rank}})</h5>
+                    <p>Lo mejor de {{tracksCurrent[current].artist.name}}</p>
+                    <br>
+                    <br>
+                    <br>
+                    <button (click)="playTrack(current)" class="btn btn-secundario">
+                        Reproducir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Listado de canciones -->
 
 <div *ngIf="loadingTrack" class="row my-3">
@@ -113,8 +145,7 @@
                         </div>
                     </div>
                     <img (error)="notFoundImage($event, 250)" [src]="item.coverMedium" class="picture-img card-img-top" [alt]="item.title">
-                </div>
-                
+                </div> 
                 
             </div>
             <div class="card-body">
