@@ -1,5 +1,24 @@
 # FolbexMusic
 
+Ingresar a la vista principar
+* http://localhost:4200/recent
+
+En caso de presentar errores con CORS, entra a la siguiente pagina y darle permiso
+* https://cors-anywhere.herokuapp.com/
+
+## FUNCIONALIDAS
+* Buscador de música y albumes
+* Reproduce música
+* Modular volumen
+* Cambiar de música (retroceder o adelantar)
+* Mutear
+* Listado de músicas y albumes acorde a lo ingresado
+
+## IMAGNES
+https://i.ibb.co/xX1ywnF/music.png
+
+https://i.ibb.co/xX1ywnF/music.png
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
 ## Development server

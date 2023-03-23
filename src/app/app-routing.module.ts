@@ -11,7 +11,12 @@ const routes: Routes = [
         path: "recent",
         loadChildren: () => import("./views/recent/recent.module").then(m => m.RecentModule)
       }
-    ]
+    ],
+  },
+
+  {
+    path: '**',
+    redirectTo: "recent"
   },
   {
     path: "auth",
